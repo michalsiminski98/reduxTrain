@@ -1,10 +1,7 @@
-import { useContext } from "react";
-import { usersContext } from "../../templates/Root";
+import { connect } from "react-redux";
 import ListItem from "../ListItem/ListItem";
 
-const List = () => {
-  const { users } = useContext(usersContext);
-
+const List = ({ users }) => {
   return (
     <ul>
       {users.map(({ id, firstName }) => (
@@ -14,4 +11,8 @@ const List = () => {
   );
 };
 
-export default List;
+const mapStateToProps = (state) => ({
+  users: state.users.users,
+});
+
+export default connect(mapStateToProps)(List);

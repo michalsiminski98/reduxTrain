@@ -1,14 +1,16 @@
-import { useContext } from "react";
-import { usersContext } from "../../templates/Root";
+import { connect } from "react-redux";
+import { deleteUser } from "../../actions/itemActions";
 
-const ListItem = ({ id, firstName }) => {
-  const { handleDeleteUser } = useContext(usersContext);
-
+const ListItem = ({ id, firstName, deleteUser }) => {
   return (
     <li>
-      {firstName} <button onClick={() => handleDeleteUser(id)}>Delete</button>
+      {firstName} <button onClick={() => deleteUser(id)}>Delete</button>
     </li>
   );
 };
 
-export default ListItem;
+const mapDispatchToProps = (dispatch) => ({
+  deleteUser: (id) => dispatch(deleteUser(id)),
+});
+
+export default connect(null, mapDispatchToProps)(ListItem);

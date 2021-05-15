@@ -38,15 +38,13 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ActionTypes.DELETE:
-      const newUsers = INITIAL_STATE.users.filter(
-        (user) => user.id !== action.payload.id
-      );
       return {
         ...state,
-        users: newUsers,
+        users: state.users.filter((user) => user.id !== action.payload.id),
       };
     default:
-      throw new Error();
+      console.log("Wrong action type");
+      return state;
   }
 };
 

@@ -1,20 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import List from "../components/List/List";
 
-export const usersContext = React.createContext({
-  users: [],
-});
-
-function Root({ users }) {
-  return (
-    <usersContext.Provider value={{ users }}>
-      <List />
-    </usersContext.Provider>
-  );
+function Root() {
+  return <List />;
 }
-const mapStateToProps = (state) => ({
-  users: state.users.users,
-});
 
-export default connect(mapStateToProps)(Root);
+export default Root;
